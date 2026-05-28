@@ -1,7 +1,9 @@
 .PHONY: build clean
 
+CONTAINER_RUNTIME := $(shell ./copilotup --container-runtime || echo podman)
+
 build:
-	podman build --tag copilotup .
+	$(CONTAINER_RUNTIME) build --tag copilotup .
 
 clean:
-	podman rmi copilotup
+	$(CONTAINER_RUNTIME) rmi copilotup
